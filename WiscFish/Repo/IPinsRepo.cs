@@ -9,6 +9,7 @@ namespace WiscFish.Repo
     public interface IPinsRepo
     {
         Task<List<Pins>> GetPins();
-        Task<List<Pins>> GetPins(int year);
+        Task<List<Pins>> GetPins(string year);
+        Task<int> PostPins(Pins pins);
     }
 }

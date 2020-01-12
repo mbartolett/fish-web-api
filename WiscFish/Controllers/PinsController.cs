@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WiscFish.Repo;
 using WiscFish.Models;
+using Newtonsoft.Json;
 
 namespace WiscFish.Controllers
 {
@@ -29,15 +30,19 @@ namespace WiscFish.Controllers
 
         // GET: api/Pins/5
         [HttpGet("{year}", Name = "Get")]
-        public async Task<List<Pins>> Get(int year)
+        public async Task<List<Pins>> Get(string year)
         {
             return await _pinsRepo.GetPins(year);
         }
 
         // POST: api/Pins
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Pins Pin)
         {
+            if (Pin != null)
+            {  
+                _pinsRepo.PostPins(Pin);
+            }           
         }
 
         // PUT: api/Pins/5
